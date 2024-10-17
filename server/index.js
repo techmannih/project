@@ -19,7 +19,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/images", imageRoutes);
 
 const PORT = process.env.PORT || 5000;
+// Start the server
+app.get("/", (req, res) => {
+  res.send("Welcome to Image Gallery API");
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
