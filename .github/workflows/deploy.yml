@@ -42,7 +42,7 @@ jobs:
     - name: Set Environment Variables in Azure App Service
       run: |
         az webapp config appsettings set \
-          --name project-server \
+          --name projecr-server \
           --resource-group project-group \
           --settings PORT=${{ secrets.PORT }} \
                       MONGODB_URI=${{ secrets.MONGODB_URI }} \
@@ -54,7 +54,7 @@ jobs:
     - name: Deploy Docker Image to Azure App Service
       run: |
         az webapp config container set \
-          --name project-server \
+          --name projecr-server \
           --resource-group project-group \
           --docker-custom-image-name ${{ secrets.DOCKER_USERNAME }}/project-server:latest
       env:
