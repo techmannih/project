@@ -47,15 +47,15 @@ jobs:
           --settings PORT=${{ secrets.PORT }} \
                       MONGODB_URI=${{ secrets.MONGODB_URI }} \
                       JWT_SECRET=${{ secrets.JWT_SECRET }} \
-                      CLOUD_NAME=${{ secrets.CLOUD_NAME }}
+                      CLOUD_NAME=${{ secrets.CLOUD_NAME }} \
                       API_KEY=${{ secrets.API_KEY }} \
-                      API_SECRET=${{ secrets.API_SECRET }} 
+                      API_SECRET=${{ secrets.API_SECRET }}
 
     - name: Deploy Docker Image to Azure App Service
       run: |
         az webapp config container set \
           --name projecr-server \
           --resource-group project-group \
-          --docker-custom-image-name ${{ secrets.DOCKER_USERNAME }}/project-server:latest
+          --container-image-name ${{ secrets.DOCKER_USERNAME }}/project-server:latest
       env:
         AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
