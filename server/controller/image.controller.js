@@ -79,7 +79,7 @@ const getUserImages = async (req, res) => {
   try {
     const images = await Image.find({ userId });
     if (!images.length) {
-      return res.status(404).json({
+      return res.status(200).json({
         status: "success",
         message: "No images found for this user.",
         images: [],
@@ -91,7 +91,7 @@ const getUserImages = async (req, res) => {
       images,
     });
   } catch (error) {
-    console.error("Error fetching images:", error);
+    console.error("Error fetching images:", error.stack || error);
     return res.status(500).json({
       status: "error",
       message: "Error fetching images",
@@ -179,7 +179,7 @@ const fetchAllImages = async (req, res) => {
   try {
     const images = await Image.find();
     if (!images.length) {
-      return res.status(404).json({
+      return res.status(200).json({
         status: "success",
         message: "No images found.",
         images: [],

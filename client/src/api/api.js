@@ -13,17 +13,22 @@ export const signup = async (username, password) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Signup failed:", errorText);
-      throw new Error(errorText || "Signup failed");
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Signup failed. Please try again." };
+      }
+      console.error("Signup failed:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Signup failed");
     }
 
     const data = await response.json();
     console.log("Signup successful:", data);
     return data;
   } catch (error) {
-    console.error("Error during signup:", error);
-    throw error;
+    console.error("Error during signup:", error.message || error);
+    throw new Error(error.message || "An error occurred during signup");
   }
 };
 
@@ -40,9 +45,14 @@ export const login = async (username, password) => {
       });
   
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Login failed:", errorText);
-        throw new Error(errorText || "Login failed");
+        let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Login failed. Please try again." };
+      }
+      console.error("Login failed:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Login failed");
       }
   
       const data = await response.json();
@@ -50,8 +60,8 @@ export const login = async (username, password) => {
       console.log("Token:", data.token, "UserId:", data.user.id);
       return { token: data.token, userId: data.user.id };
     } catch (error) {
-      console.error("Error during login:", error);
-      throw error;
+      console.error("Error during login:", error.message);
+      throw new Error(error.message || "An error occurred during login");
     }
   };
   
@@ -69,17 +79,22 @@ export const uploadImage = async (token, imageData) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Image upload failed:", errorText);
-      throw new Error(errorText || "Image upload failed");
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Image upload failed. Please try again." };
+      }
+      console.error("Image upload failed:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Image upload failed");
     }
 
     const data = await response.json();
     console.log("Image uploaded successfully:", data);
     return data;
   } catch (error) {
-    console.error("Error during image upload:", error);
-    throw error;
+    console.error("Error during image upload:", error.message || "An error occurred");
+    throw new Error(error.message || "An error occurred during image upload");
   }
 };
 
@@ -95,17 +110,22 @@ export const getUserImages = async (token, userId) => {
       });
   
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Failed to fetch images:", errorText);
-        throw new Error(errorText || "Failed to fetch images");
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (parseError) {
+          errorData = { message: "Failed to fetch images. Please try again." };
+        }
+        console.error("Failed to fetch images:", errorData.message || "Unknown error");
+        throw new Error(errorData.message || "Failed to fetch images");
       }
   
       const data = await response.json();
       console.log("User images fetched successfully:", data);
       return data;
     } catch (error) {
-      console.error("Error during fetching user images:", error);
-      throw error;
+      console.error("Error during fetching user images:", error.message || "An error occurred");
+      throw new Error(error.message || "An error occurred during fetching user images");
     }
   };
   
@@ -123,17 +143,22 @@ export const incrementViewCount = async (token, imageId) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Failed to increment view count:", errorText);
-      throw new Error(errorText || "Failed to increment view count");
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Failed to increment view count. Please try again." };
+      }
+      console.error("Failed to increment view count:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Failed to increment view count");
     }
 
     const data = await response.json();
     console.log("View count incremented successfully:", data);
     return data;
   } catch (error) {
-    console.error("Error during view count increment:", error);
-    throw error;
+    console.error("Error during view count increment:", error.message || "An error occurred");
+    throw new Error(error.message || "An error occurred during view count increment");
   }
 };
 
@@ -149,17 +174,23 @@ export const fetchImage = async (id, token) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Failed to fetch image:", errorText);
-      throw new Error(errorText || "Failed to fetch image");
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Failed to fetch image. Please try again." };
+      }
+
+      console.error("Failed to fetch image:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Failed to fetch image");
     }
 
     const data = await response.json();
     console.log("Image fetched successfully:", data);
     return data;
   } catch (error) {
-    console.error("Error during fetching image:", error);
-    throw error;
+    console.error("Error during fetching image:", error.message || "An error occurred");
+    throw new Error(error.message || "An error occurred during fetching image");
   }
 };
 
@@ -175,16 +206,21 @@ export const fetchAllImages = async (token) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Failed to fetch images:", errorText);
-      throw new Error(errorText || "Failed to fetch images");
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (parseError) {
+        errorData = { message: "Failed to fetch images. Please try again." };
+      }
+      console.error("Failed to fetch images:", errorData.message || "Unknown error");
+      throw new Error(errorData.message || "Failed to fetch images");
     }
 
     const data = await response.json();
     console.log("Images fetched successfully:", data);
     return data;
   } catch (error) {
-    console.error("Error during fetching images:", error);
-    throw error;
+    console.error("Error during fetching images:", error.message || "An error occurred");
+    throw new Error(error.message || "An error occurred during fetching images");
   }
 };

@@ -57,9 +57,9 @@ const ImageGallery = ({ token, userId, onLogout }) => {
       if (allImagesLoading) {
         return <p>Loading all images...</p>;
       }
-      if (allImagesError) {
-        return <p className="text-red-500">Error: {allImagesError}</p>;
-      }
+      // if (allImagesError) {
+      //   return <p className="text-red-500">Error: {allImagesError}</p>;
+      // }
       if (images.images && images.images.length > 0) {
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -95,9 +95,9 @@ const ImageGallery = ({ token, userId, onLogout }) => {
       if (userImagesLoading) {
         return <p>Loading your images...</p>;
       }
-      if (userImagesError) {
-        return <p className="text-red-500">Error: {userImagesError}</p>;
-      }
+      // if (userImagesError) {
+      //   return <p className="text-red-500">Error: {userImagesError}</p>;
+      // }
       if (userImages.images && userImages.images.length > 0) {
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

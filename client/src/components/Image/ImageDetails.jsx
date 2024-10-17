@@ -10,7 +10,7 @@ const ImageDetail = ({ token }) => {
 
   useEffect(() => {
     if (id && token) {
-      dispatch(fetchImageAction(id, token));  // Fetch image by ID and token
+      dispatch(fetchImageAction(id, token));
     }
   }, [id, token, dispatch]);
 
