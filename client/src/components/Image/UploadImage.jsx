@@ -6,6 +6,7 @@ const ImageUpload = ({ token, onClose }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
 
   const { loading, error } = useSelector((state) => state.imageUpload);
@@ -18,6 +19,9 @@ const ImageUpload = ({ token, onClose }) => {
     formData.append("description", description);
 
     dispatch(uploadImageAction(token, formData));
+    setTimeout(() => {
+      setSuccess("Images uploaded successfully");
+    }, 2000);
     setTitle("");
     setDescription("");
     setFile(null);
@@ -39,7 +43,7 @@ const ImageUpload = ({ token, onClose }) => {
         </div>
         <div className="m-5">
           <input
-            className="bg-black p-2 hover:border-white hover:border-2 hover:rounded-xl"
+            className="bg-black p-2 hover:border-white hover:border-2 hover:rounded-xl w-full"
             type="text"
             name="title"
             value={title}
@@ -50,7 +54,7 @@ const ImageUpload = ({ token, onClose }) => {
         </div>
         <div className="m-5">
           <input
-            className="bg-black p-2 hover:border-white hover:border-2 hover:rounded-xl"
+            className="bg-black p-2 hover:border-white hover:border-2 hover:rounded-xl w-full"
             type="text"
             name="description"
             value={description}

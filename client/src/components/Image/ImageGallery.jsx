@@ -64,26 +64,27 @@ const ImageGallery = ({ token, userId, onLogout }) => {
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {images.images.map((image) => (
-              <div key={image._id} className="flex flex-col items-center">
-                <h3 className="font-bold">{image.title || "Untitled"}</h3>
+              <div key={image._id} className="flex flex-col border-gray-400 border-2 rounded-2xl p-3">
+                
                 <img
                   src={image.url}
                   alt={image.title || "Image"}
-                  className="max-w-full h-auto rounded-lg"
+                  className=" h-auto rounded-lg"
                   style={{
                     width: "300px",
                     height: "300px",
                     objectFit: "cover",
                   }}
                 />
-                <p>{image.description || "No description available."}</p>
+                <h3 className="font-bold m-1">Title: {image.title || "Untitled"}</h3>
+                <p className="m-1">Description: {image.description || "No description available."}</p>
+                <p className="m-1">Views: {image.viewCount || 0}</p>
                 <button
                   onClick={() => handleViewClick(image._id)}
                   className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
                 >
                   View
                 </button>
-                <p className="mt-1">Views: {image.viewCount || 0}</p>
               </div>
             ))}
           </div>
@@ -102,8 +103,7 @@ const ImageGallery = ({ token, userId, onLogout }) => {
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {userImages.images.map((image) => (
-              <div key={image._id} className="flex flex-col items-center">
-                <h3 className="font-bold">{image.title || "Untitled"}</h3>
+              <div key={image._id} className="flex flex-col border-gray-400 border-2 rounded-2xl p-3">
                 <img
                   src={image.url}
                   alt={image.title || "Image"}
@@ -114,14 +114,15 @@ const ImageGallery = ({ token, userId, onLogout }) => {
                     objectFit: "cover",
                   }}
                 />
-                <p>{image.description || "No description available."}</p>
+                <h3 className="font-bold m-1">Title: {image.title || "Untitled"}</h3>
+                <p className="m-1"> Description: {image.description || "No description available."}</p>
+                <p className="m-1">Views: {image.viewCount || 0}</p>
                 <button
                   onClick={() => handleViewClick(image._id)}
                   className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
                 >
                   View
                 </button>
-                <p className="mt-1">Views: {image.viewCount || 0}</p>
               </div>
             ))}
           </div>
@@ -134,12 +135,12 @@ const ImageGallery = ({ token, userId, onLogout }) => {
 
   return (
     <div className="h-full flex items-center justify-center">
-      <div className="bg-black flex flex-col p-8 m-8 text-white border-white border-2 rounded-xl">
+      <div className="bg-black flex flex-col p-8 m-8 text-white  border-2 rounded-xl">
         <div className="flex justify-between mb-4">
           <h2 className="text-center py-6 text-xl font-bold">Image Gallery</h2>
           <button
             onClick={onLogout}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-red-500 text-white font-bold p-2 rounded"
           >
             Logout
           </button>

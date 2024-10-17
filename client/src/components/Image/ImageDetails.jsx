@@ -27,16 +27,24 @@ const ImageDetail = ({ token }) => {
   }
 
   return (
-    <div className="flex flex-col items-center text-white">
-      <div key={image.image.id} className="mb-4">
-        <h2 className="text-xl font-bold">{image.image.title || "Untitled"}</h2>
+    <div className="flex flex-col items-center text-white mt-24">
+      <div key={image.image.id} className="m-2 flex max-md:flex-col justify-center  p-2 ">
         <img
           src={image.image.url}
           alt={image.image.title || "Image"}
-          className="max-w-full h-auto"
+          width={400}
+          height={300}
+          className="h-auto"
         />
-        <p>{image.image.description || "No description available."}</p>
-        <p>Views: {image.image.viewCount || 0}</p>
+        <div className=" md:m-2  md:p-2">
+          <h2 className="text-xl  m-1">
+            Title: {image.image.title || "Untitled"}
+          </h2>
+          <p className="m-1">
+            Decription: {image.image.description || "No description available."}
+          </p>
+          <p className="m-1">Views: {image.image.viewCount || 0}</p>
+        </div>
       </div>
     </div>
   );

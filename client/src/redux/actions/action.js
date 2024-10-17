@@ -47,6 +47,7 @@ export const getUserImagesAction = (token, userId) => async (dispatch) => {
   try {
     const data = await getUserImages(token, userId);
     dispatch({ type: GET_IMAGES_SUCCESS, payload: data });
+    console.log("User images fetched successfully in action:", data);
   } catch (error) {
     dispatch({ type: GET_IMAGES_FAILURE, error: getErrorMessage(error, "Failed to fetch user images.") });
   }
@@ -84,6 +85,7 @@ export const fetchAllImagesAction = (token) => async (dispatch) => {
     const data = await fetchAllImages(token);
     console.log("All images fetched successfully from action:", data);
     dispatch({ type: FETCH_ALL_IMAGES_SUCCESS, payload: data });
+    console.log("images fetched successfully in action:", data);
   } catch (error) {
     dispatch({ type: FETCH_ALL_IMAGES_FAILURE, error: getErrorMessage(error, "Failed to fetch all images.") });
   }
