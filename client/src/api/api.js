@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "https://project-hnh2.onrender.com";
 
 export const signup = async (username, password) => {
   console.log("Signup request received:", { username, password });
